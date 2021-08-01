@@ -5,4 +5,5 @@ app_name = 'mainapp'
 
 urlpatterns = [
     path('', index, name='index'),
+    path('category/<int:pk>/', index, name='category'),
 ]
