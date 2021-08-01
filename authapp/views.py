@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.contrib import auth
 from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditForm
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
 def login(request):
