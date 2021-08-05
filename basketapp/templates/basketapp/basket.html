@@ -1,0 +1,53 @@
+{% extends 'GeekShop/base.html' %}
+{% load static %}
+{% block title %}Каталог{% endblock %}
+{% block content %}
+
+
+
+	<div class="container">
+		<div class="hero-white">
+			{% include 'GeekShop/includes/inc_main_menu.html' %}
+		</div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Товар</th>
+              <th scope="col">Количество</th>
+                <th scope="col">Цена</th>
+              <th scope="col">Удалить</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in basket_items %}
+                <tr>
+                  <th scope="row">{{ forloop.counter }}</th>
+                  <td>{{ item.product.name }}</td>
+                  <td>{{ item.product.quantity }}</td>
+                  <td>{{ item.product.price }}</td>
+                  <td>
+                      <button class="btn btn-round">
+                        <a href="{% url 'basket:remove' item.pk %}" class="">
+                        удалить
+                        </a>
+                      </button>
+                  </td>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        {% if basket_items %}
+        <div class="basket_summary">
+            В корзине {{ basket_items.0.total_quantity }} товаров общей стоимостью
+            {{ basket_items.0.total_cost }} руб
+        </div>
+        {% endif %}
+
+        <button class="btn btn-round">
+            <a href="{% url 'index' %}">на главную</a>
+        </button>
+
+{% endblock %}
